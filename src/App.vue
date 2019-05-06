@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <h1>Rhymesaurus: The Rhyming Thesaurus</h1>
     <router-view/>
+    <Navigation></Navigation>
   </div>
 </template>
 
 <script>
+import Navigation from './components/Navigation'
+
 export default {
-  name: 'app'
+  name: 'app',
+
+  components: {
+    'Navigation': Navigation
+  }
 }
 </script>
 

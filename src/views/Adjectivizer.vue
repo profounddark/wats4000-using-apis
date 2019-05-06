@@ -1,8 +1,8 @@
 <template>
   <div class="rhymesaurus">
-    <h1>Rhymesaurus: The Rhyming Thesaurus</h1>
+    <h1>Adjectivizer: The Adjective Finder</h1>
     <form v-on:submit.prevent="findWords">
-      <p>Find rhymes for <input type="text" v-model="rhyme"> related to <input type="text" v-model="phrase"> <button type="submit">Search</button></p>
+      <p>Find adjectives for the noun <input type="text" v-model="noun"><button type="submit">Search</button></p>
     </form>
     <ul v-if="results && results.length > 0" class="results">
       <li v-for="item of results" class="item">
@@ -16,7 +16,6 @@
       <p>Please adjust your search to find more words.</p>
     </div>
 
-    <!-- TODO: Add a v-if conditional to make this errors list show only if there are errors and if the length is greater than 0. -->
     <ul v-if="errors.length > 0" class="errors">
       <li v-for="error of errors">
         {{error.message}}
@@ -34,16 +33,14 @@ export default {
     return {
       results: null,
       errors: [],
-      phrase: '',
-      rhyme: ''
+      noun: ''
     }
   },
   methods: {
     findWords: function(){
       axios.get('https://api.datamuse.com/words', {
         params: {
-          ml: this.phrase,
-          rel_rhy: this.rhyme
+          rel_jjb: this.noun
         }
       })
       .then(response => {
